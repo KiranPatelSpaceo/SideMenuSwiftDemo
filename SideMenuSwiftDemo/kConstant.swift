@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 let sideMenuVC = KSideMenuVC()
+let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
 class kConstant {
     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)

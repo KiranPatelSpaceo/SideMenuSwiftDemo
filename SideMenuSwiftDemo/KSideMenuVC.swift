@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 class KSideMenuVC: UIViewController,UIGestureRecognizerDelegate {
     
     var mainContainer : UIViewController?
@@ -23,7 +24,7 @@ class KSideMenuVC: UIViewController,UIGestureRecognizerDelegate {
         // Do any additional setup after loading the view, typically from a nib.
     }
     func setUp(){
-        self.distanceOpenMenu = self.view.frame.size.width-(self.view.frame.size.width/4);
+        self.distanceOpenMenu = self.view.frame.size.width-(self.view.frame.size.width/3);
         self.view.backgroundColor = UIColor.whiteColor();
         self.menuContainer = UIViewController()
         self.menuContainer!.view.layer.anchorPoint = CGPointMake(1.0, 0.5);
@@ -55,11 +56,13 @@ class KSideMenuVC: UIViewController,UIGestureRecognizerDelegate {
         self.menuContainer?.didMoveToParentViewController(self.menuViewController)
     }
     func setMainViewController(mainVC : UIViewController)()->Void{
-        if (self.mainViewController == mainVC) {
-            if (CGRectGetMinX(self.mainContainer!.view.frame) == self.distanceOpenMenu) {
-                closeMenu()
-            }
-        }
+        closeMenu()
+
+//        if (self.mainViewController == mainVC) {
+//            if (CGRectGetMinX(self.mainContainer!.view.frame) == self.distanceOpenMenu) {
+//                closeMenu()
+//            }
+//        }
         if (self.mainViewController != nil) {
             self.mainViewController?.willMoveToParentViewController(nil)
             self.mainViewController?.removeFromParentViewController()
@@ -79,19 +82,59 @@ class KSideMenuVC: UIViewController,UIGestureRecognizerDelegate {
         addTapGestures()
         var fMain : CGRect = self.mainContainer!.view.frame
         fMain.origin.x = self.distanceOpenMenu;
+        //Simple Open Menu
+        /*
         UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
                 self.mainContainer!.view.frame = fMain
             
             }) { (finished: Bool) -> Void in
                 
+        }*/
+        UIView.animateWithDuration(0.7, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+            let layerTemp : CALayer = (self.mainContainer?.view.layer)!
+            layerTemp.zPosition = 1000
+            var tRotate : CATransform3D = CATransform3DIdentity
+            tRotate.m34 = 1.0/(-500)
+            let aXpos: CGFloat = CGFloat(-20.0*(M_PI/180))
+            tRotate = CATransform3DRotate(tRotate,aXpos, 0, 1, 0)
+            var tScale : CATransform3D = CATransform3DIdentity
+            tScale.m34 = 1.0/(-500)
+            tScale = CATransform3DScale(tScale, 0.8, 0.8, 1.0);
+            layerTemp.transform = CATransform3DConcat(tScale, tRotate)
+            
+            self.mainContainer?.view.frame = fMain
+            }) { (finished: Bool) -> Void in
+                
         }
+        
     }
     func closeMenu(){
         var fMain : CGRect = self.mainContainer!.view.frame
         fMain.origin.x = 0
+        /*
         UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.6, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
             self.mainContainer!.view.frame = fMain
             
+            }) { (finished: Bool) -> Void in
+                
+        }*/
+
+        UIView.animateWithDuration(0.7, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+            self.mainContainer?.view.transform = CGAffineTransformMakeScale(1.0, 1.0)
+            let layerTemp : CALayer = (self.mainContainer?.view.layer)!
+            layerTemp.zPosition = 1000
+            var tRotate : CATransform3D = CATransform3DIdentity
+            tRotate.m34 = 1.0/(-500)
+            let aXpos: CGFloat = CGFloat(0.0*(M_PI/180))
+            tRotate = CATransform3DRotate(tRotate,aXpos, 0, 1, 0)
+              layerTemp.transform = tRotate
+            var tScale : CATransform3D = CATransform3DIdentity
+            tScale.m34 = 1.0/(-500)
+            tScale = CATransform3DScale(tScale,1.0, 1.0, 1.0);
+            layerTemp.transform = tScale;
+            layerTemp.transform = CATransform3DConcat(tRotate, tScale)
+            layerTemp.transform = CATransform3DConcat(tScale, tRotate)
+            self.mainContainer!.view.frame = CGRectMake(0, 0, appDelegate.window!.frame.size.width, appDelegate.window!.frame.size.height)
             }) { (finished: Bool) -> Void in
                 
         }
