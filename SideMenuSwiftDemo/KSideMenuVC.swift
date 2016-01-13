@@ -90,6 +90,7 @@ class KSideMenuVC: UIViewController,UIGestureRecognizerDelegate {
             }) { (finished: Bool) -> Void in
                 
         }*/
+
         UIView.animateWithDuration(0.7, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
             let layerTemp : CALayer = (self.mainContainer?.view.layer)!
             layerTemp.zPosition = 1000
@@ -104,9 +105,7 @@ class KSideMenuVC: UIViewController,UIGestureRecognizerDelegate {
             
             self.mainContainer?.view.frame = fMain
             }) { (finished: Bool) -> Void in
-                
         }
-        
     }
     func closeMenu(){
         var fMain : CGRect = self.mainContainer!.view.frame
@@ -136,13 +135,15 @@ class KSideMenuVC: UIViewController,UIGestureRecognizerDelegate {
             layerTemp.transform = CATransform3DConcat(tScale, tRotate)
             self.mainContainer!.view.frame = CGRectMake(0, 0, appDelegate.window!.frame.size.width, appDelegate.window!.frame.size.height)
             }) { (finished: Bool) -> Void in
-                
+                self.mainViewController!.view.userInteractionEnabled = true
+
         }
     }
     func addTapGestures(){
-    let tapGestureRecognizer : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapMainAction")
-        
-     self.mainContainer!.view.addGestureRecognizer(tapGestureRecognizer)
+        self.mainViewController!.view.userInteractionEnabled = false
+
+        let tapGestureRecognizer : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapMainAction")
+        self.mainContainer!.view.addGestureRecognizer(tapGestureRecognizer)
     }
     func tapMainAction(){
         closeMenu()
