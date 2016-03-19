@@ -136,6 +136,7 @@ class KSideMenuVC: UIViewController,UIGestureRecognizerDelegate {
             self.mainContainer!.view.frame = CGRectMake(0, 0, appDelegate.window!.frame.size.width, appDelegate.window!.frame.size.height)
             }) { (finished: Bool) -> Void in
                 self.mainViewController!.view.userInteractionEnabled = true
+                self.removeGesture()
 
         }
     }
@@ -144,6 +145,13 @@ class KSideMenuVC: UIViewController,UIGestureRecognizerDelegate {
 
         let tapGestureRecognizer : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapMainAction")
         self.mainContainer!.view.addGestureRecognizer(tapGestureRecognizer)
+    }
+    func removeGesture(){
+        for recognizer in  self.mainContainer!.view.gestureRecognizers ?? [] {
+            if (recognizer .isKindOfClass(UITapGestureRecognizer)){
+                self.mainContainer!.view.removeGestureRecognizer(recognizer)
+            }
+        }
     }
     func tapMainAction(){
         closeMenu()
