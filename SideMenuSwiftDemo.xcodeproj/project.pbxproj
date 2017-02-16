@@ -211,13 +211,16 @@
 				TargetAttributes = {
 					0F5542EA1C37AA5200E2BAE0 = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0820;
 					};
 					0F5542FE1C37AA5200E2BAE0 = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = 0F5542EA1C37AA5200E2BAE0;
 					};
 					0F5543091C37AA5200E2BAE0 = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = 0F5542EA1C37AA5200E2BAE0;
 					};
 				};
@@ -425,6 +428,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.-.SideMenuSwiftDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -436,6 +440,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.-.SideMenuSwiftDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -447,6 +452,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.-.SideMenuSwiftDemoTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SideMenuSwiftDemo.app/SideMenuSwiftDemo";
 			};
 			name = Debug;
@@ -459,6 +465,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.-.SideMenuSwiftDemoTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SideMenuSwiftDemo.app/SideMenuSwiftDemo";
 			};
 			name = Release;
@@ -470,6 +477,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.-.SideMenuSwiftDemoUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = SideMenuSwiftDemo;
 				USES_XCTRUNNER = YES;
 			};
@@ -482,6 +490,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.-.SideMenuSwiftDemoUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = SideMenuSwiftDemo;
 				USES_XCTRUNNER = YES;
 			};
@@ -506,6 +515,7 @@
 				0F5543151C37AA5200E2BAE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0F5543161C37AA5200E2BAE0 /* Build configuration list for PBXNativeTarget "SideMenuSwiftDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +524,7 @@
 				0F5543181C37AA5200E2BAE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0F5543191C37AA5200E2BAE0 /* Build configuration list for PBXNativeTarget "SideMenuSwiftDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +533,7 @@
 				0F55431B1C37AA5200E2BAE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

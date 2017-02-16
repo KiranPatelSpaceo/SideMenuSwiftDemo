@@ -17,19 +17,19 @@ class SideMenuVC: UIViewController {
         self.tableView.reloadData()
         // Do any additional setup after loading the view, typically from a nib.
     }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return aData.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let aCell = tableView.dequeueReusableCellWithIdentifier(
-            "kCell", forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+        let aCell = tableView.dequeueReusableCell(
+            withIdentifier: "kCell", for: indexPath)
         let aLabel : UILabel = aCell.viewWithTag(10) as! UILabel
         aLabel.text = aData[indexPath.row] as? String
         return aCell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         if indexPath.row == 0 {
             kConstantObj.SetIntialMainViewController("firstVC") // firstVC is storyboard ID
         }else if indexPath.row == 1 {

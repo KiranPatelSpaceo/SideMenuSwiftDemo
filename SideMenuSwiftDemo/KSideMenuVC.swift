@@ -25,26 +25,27 @@ class KSideMenuVC: UIViewController,UIGestureRecognizerDelegate {
     }
     func setUp(){
         self.distanceOpenMenu = self.view.frame.size.width-(self.view.frame.size.width/3);
-        self.view.backgroundColor = UIColor.whiteColor();
+        self.view.backgroundColor = UIColor.white;
         self.menuContainer = UIViewController()
-        self.menuContainer!.view.layer.anchorPoint = CGPointMake(1.0, 0.5);
+        self.menuContainer!.view.layer.anchorPoint = CGPoint(x: 1.0, y: 0.5);
         self.menuContainer!.view.frame = self.view.bounds;
-        self.menuContainer!.view.backgroundColor = UIColor.clearColor();
+        self.menuContainer!.view.backgroundColor = UIColor.clear;
         self.addChildViewController(self.menuContainer!)
         self.view.addSubview((self.menuContainer?.view)!)
-        self.menuContainer?.didMoveToParentViewController(self)
+        self.menuContainer?.didMove(toParentViewController: self)
         
          self.mainContainer = UIViewController()
         self.mainContainer!.view.frame = self.view.bounds;
-        self.mainContainer!.view.backgroundColor = UIColor.clearColor();
+        self.mainContainer!.view.backgroundColor = UIColor.clear;
         self.addChildViewController(self.mainContainer!)
         self.view.addSubview((self.mainContainer?.view)!)
-        self.mainContainer?.didMoveToParentViewController(self)
+        self.mainContainer?.didMove(toParentViewController: self)
 
     }
-    func setMenuViewController(menuVC : UIViewController)()->Void{
+    func menuViewController(_ menuVC : UIViewController)
+    {
         if (self.menuViewController != nil) {
-            self.menuViewController?.willMoveToParentViewController(nil)
+            self.menuViewController?.willMove(toParentViewController: nil)
             self.menuViewController?.removeFromParentViewController()
             self.menuViewController?.view.removeFromSuperview()
         }
@@ -53,9 +54,10 @@ class KSideMenuVC: UIViewController,UIGestureRecognizerDelegate {
         self.menuViewController!.view.frame = self.view.bounds;
         self.menuContainer?.addChildViewController(self.menuViewController!)
         self.menuContainer?.view.addSubview(menuVC.view)
-        self.menuContainer?.didMoveToParentViewController(self.menuViewController)
+        self.menuContainer?.didMove(toParentViewController: self.menuViewController)
     }
-    func setMainViewController(mainVC : UIViewController)()->Void{
+    func mainViewController(_ mainVC : UIViewController)
+    {
         closeMenu()
 
 //        if (self.mainViewController == mainVC) {
@@ -64,7 +66,7 @@ class KSideMenuVC: UIViewController,UIGestureRecognizerDelegate {
 //            }
 //        }
         if (self.mainViewController != nil) {
-            self.mainViewController?.willMoveToParentViewController(nil)
+            self.mainViewController?.willMove(toParentViewController: nil)
             self.mainViewController?.removeFromParentViewController()
             self.mainViewController?.view.removeFromSuperview()
         }
@@ -72,9 +74,9 @@ class KSideMenuVC: UIViewController,UIGestureRecognizerDelegate {
         self.mainViewController!.view.frame = self.view.bounds;
         self.mainContainer?.addChildViewController(self.mainViewController!)
         self.mainContainer?.view.addSubview(self.mainViewController!.view)
-        self.mainViewController?.didMoveToParentViewController(self.mainContainer)
+        self.mainViewController?.didMove(toParentViewController: self.mainContainer)
       
-        if (CGRectGetMinX(self.mainContainer!.view.frame) == self.distanceOpenMenu) {
+        if (self.mainContainer!.view.frame.minX == self.distanceOpenMenu) {
             closeMenu()
         }
     }
@@ -91,7 +93,7 @@ class KSideMenuVC: UIViewController,UIGestureRecognizerDelegate {
                 
         }*/
 
-        UIView.animateWithDuration(0.7, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+        UIView.animate(withDuration: 0.7, delay: 0.0, options: UIViewAnimationOptions.beginFromCurrentState, animations: { () -> Void in
             let layerTemp : CALayer = (self.mainContainer?.view.layer)!
             layerTemp.zPosition = 1000
             var tRotate : CATransform3D = CATransform3DIdentity
@@ -118,8 +120,8 @@ class KSideMenuVC: UIViewController,UIGestureRecognizerDelegate {
                 
         }*/
 
-        UIView.animateWithDuration(0.7, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
-            self.mainContainer?.view.transform = CGAffineTransformMakeScale(1.0, 1.0)
+        UIView.animate(withDuration: 0.7, delay: 0.0, options: UIViewAnimationOptions.beginFromCurrentState, animations: { () -> Void in
+            self.mainContainer?.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             let layerTemp : CALayer = (self.mainContainer?.view.layer)!
             layerTemp.zPosition = 1000
             var tRotate : CATransform3D = CATransform3DIdentity
@@ -133,22 +135,22 @@ class KSideMenuVC: UIViewController,UIGestureRecognizerDelegate {
             layerTemp.transform = tScale;
             layerTemp.transform = CATransform3DConcat(tRotate, tScale)
             layerTemp.transform = CATransform3DConcat(tScale, tRotate)
-            self.mainContainer!.view.frame = CGRectMake(0, 0, appDelegate.window!.frame.size.width, appDelegate.window!.frame.size.height)
+            self.mainContainer!.view.frame = CGRect(x: 0, y: 0, width: appDelegate.window!.frame.size.width, height: appDelegate.window!.frame.size.height)
             }) { (finished: Bool) -> Void in
-                self.mainViewController!.view.userInteractionEnabled = true
+                self.mainViewController!.view.isUserInteractionEnabled = true
                 self.removeGesture()
 
         }
     }
     func addTapGestures(){
-        self.mainViewController!.view.userInteractionEnabled = false
+        self.mainViewController!.view.isUserInteractionEnabled = false
 
-        let tapGestureRecognizer : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapMainAction")
+        let tapGestureRecognizer : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(KSideMenuVC.tapMainAction))
         self.mainContainer!.view.addGestureRecognizer(tapGestureRecognizer)
     }
     func removeGesture(){
         for recognizer in  self.mainContainer!.view.gestureRecognizers ?? [] {
-            if (recognizer .isKindOfClass(UITapGestureRecognizer)){
+            if (recognizer .isKind(of: UITapGestureRecognizer.self)){
                 self.mainContainer!.view.removeGestureRecognizer(recognizer)
             }
         }
@@ -158,7 +160,7 @@ class KSideMenuVC: UIViewController,UIGestureRecognizerDelegate {
     }
     func toggleMenu(){
         let fMain : CGRect = self.mainContainer!.view.frame
-        if (CGRectGetMinX(fMain) == self.distanceOpenMenu) {
+        if (fMain.minX == self.distanceOpenMenu) {
            closeMenu()
         }else{
            openMenu()

@@ -14,32 +14,32 @@ class SecondVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("kCell", forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "kCell", for: indexPath)
         configureCell(cell, forRowAtIndexPath: indexPath)
         
         return cell
     }
     
-    func configureCell(cell: UITableViewCell, forRowAtIndexPath: NSIndexPath) {
+    func configureCell(_ cell: UITableViewCell, forRowAtIndexPath: IndexPath) {
         
     }
     //MARK: UITableViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         print("Didselect")
     }
     
 
-    @IBAction func btnSideMenuPressed(sender: UIButton) {
+    @IBAction func btnSideMenuPressed(_ sender: UIButton) {
         sideMenuVC.toggleMenu()
     }
 }

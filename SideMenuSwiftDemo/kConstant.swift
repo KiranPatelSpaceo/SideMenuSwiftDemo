@@ -9,27 +9,27 @@
 import Foundation
 import UIKit
 let sideMenuVC = KSideMenuVC()
-let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
 class kConstant {
     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
-    func SetIntialMainViewController(aStoryBoardID: String)->(KSideMenuVC){
-        let sideMenuObj = mainStoryboard.instantiateViewControllerWithIdentifier("sideMenuID")
-        let mainVcObj = mainStoryboard.instantiateViewControllerWithIdentifier(aStoryBoardID)
+    func SetIntialMainViewController(_ aStoryBoardID: String)->(KSideMenuVC){
+        let sideMenuObj = mainStoryboard.instantiateViewController(withIdentifier: "sideMenuID")
+        let mainVcObj = mainStoryboard.instantiateViewController(withIdentifier: aStoryBoardID)
         let navigationController : UINavigationController = UINavigationController(rootViewController: mainVcObj)
-        navigationController.navigationBarHidden = true
-        sideMenuVC.view.frame = UIScreen.mainScreen().bounds
-        sideMenuVC.setMainViewController(navigationController)()
-        sideMenuVC.setMenuViewController(sideMenuObj)()
+        navigationController.isNavigationBarHidden = true
+        sideMenuVC.view.frame = UIScreen.main.bounds
+        sideMenuVC.mainViewController(navigationController)
+        sideMenuVC.menuViewController(sideMenuObj)
         return sideMenuVC
     }
-    func SetMainViewController(aStoryBoardID: String)->(KSideMenuVC){
-        let mainVcObj = mainStoryboard.instantiateViewControllerWithIdentifier(aStoryBoardID)
+    func SetMainViewController(_ aStoryBoardID: String)->(KSideMenuVC){
+        let mainVcObj = mainStoryboard.instantiateViewController(withIdentifier: aStoryBoardID)
         let navigationController : UINavigationController = UINavigationController(rootViewController: mainVcObj)
-        navigationController.navigationBarHidden = true
-        sideMenuVC.view.frame = UIScreen.mainScreen().bounds
-        sideMenuVC.setMainViewController(navigationController)()
+        navigationController.isNavigationBarHidden = true
+        sideMenuVC.view.frame = UIScreen.main.bounds
+        sideMenuVC.mainViewController(navigationController)
         return sideMenuVC
     }
    

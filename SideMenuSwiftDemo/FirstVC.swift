@@ -14,7 +14,7 @@ class FirstVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-    @IBAction func btnSideMenuPressed(sender: UIButton) {
+    @IBAction func btnSideMenuPressed(_ sender: UIButton) {
         sideMenuVC.toggleMenu()
     }
 }
